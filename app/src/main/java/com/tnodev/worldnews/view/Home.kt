@@ -1,4 +1,4 @@
-package com.tnodev.worldnews
+package com.tnodev.worldnews.view
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.tabs.TabLayout
+import com.tnodev.worldnews.R
+import com.tnodev.worldnews.adapter.CategoryFragmentAdapter
 import com.tnodev.worldnews.databinding.ActivityHomeBinding
 import java.lang.String.valueOf
 
@@ -17,6 +19,7 @@ class Home : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
+    private lateinit var listAdapter: CategoryFragmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,7 @@ class Home : AppCompatActivity() {
 
 
 
+
             }
 
             true;
@@ -59,7 +63,28 @@ class Home : AppCompatActivity() {
 
     companion object{
 
-        var catpos:Int = 0;
+        var pagerPos:Int = 0;
+    }
+
+    fun callPager(){
+
+
+        if (listAdapter == null) {
+            listAdapter = CategoryFragmentAdapter(
+                supportFragmentManager,
+                binding.tabLayout.tabCount,
+
+
+                binding.tabLayout,
+
+
+                this
+            )
+            binding.homePager.setAdapter(listAdapter)
+            binding.homePager.setCurrentItem(pagerPos)
+        } else {
+            listAdapter.notifyDataSetChanged()
+        }
     }
 
     fun setUpTabs(pager: ViewPager?) {
@@ -67,7 +92,7 @@ class Home : AppCompatActivity() {
         binding.homePager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
            override fun onPageScrolled(i: Int, v: Float, i1: Int) {}
             override fun onPageSelected(i: Int) {
-                catpos = i;
+                pagerPos = i;
 
             }
 

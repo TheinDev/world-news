@@ -13,7 +13,7 @@ import java.util.*
 
 @Suppress("DEPRECATION")
 class CategoryFragmentAdapter : FragmentStatePagerAdapter {
-    var TabCount = 0
+    var tabCount = 0
     var posi = 0
     var tabLayout: TabLayout? = null
     var context: Context? = null
@@ -27,16 +27,16 @@ class CategoryFragmentAdapter : FragmentStatePagerAdapter {
 
     constructor(fm: FragmentManager?) : super(fm!!) {}
     constructor(
-        fragmentManager: FragmentManager?, CountTabs: Int,
-        tabLayout: TabLayout?, lan: String?, context: Context?
+        fragmentManager: FragmentManager?, tabCount: Int,
+        tabLayout: TabLayout?,  context: Context?
     ) : super(
         fragmentManager!!
     ) {
-        TabCount = CountTabs
+        this.tabCount = tabCount
         this.tabLayout = tabLayout
         this.fragmentManager = fragmentManager
         this.context = context
-        this.lan = lan
+
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
@@ -73,6 +73,6 @@ class CategoryFragmentAdapter : FragmentStatePagerAdapter {
     }
 
     override fun getCount(): Int {
-        return TabCount
+        return tabCount
     }
 }
