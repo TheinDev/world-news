@@ -1,4 +1,4 @@
-package com.tnodev.worldnews.ui.dashboard
+package com.tnodev.worldnews.view.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

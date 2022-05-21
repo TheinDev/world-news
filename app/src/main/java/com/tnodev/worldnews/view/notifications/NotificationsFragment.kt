@@ -1,4 +1,4 @@
-package com.tnodev.worldnews.ui.notifications
+package com.tnodev.worldnews.view.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.tnodev.worldnews.R
 import com.tnodev.worldnews.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {

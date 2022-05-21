@@ -1,4 +1,4 @@
-package com.tnodev.worldnews.ui.home
+package com.tnodev.worldnews.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

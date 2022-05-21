@@ -1,4 +1,4 @@
-package com.tnodev.worldnews.ui.notifications
+package com.tnodev.worldnews.view.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
