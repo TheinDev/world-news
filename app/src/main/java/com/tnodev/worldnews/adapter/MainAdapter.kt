@@ -36,14 +36,20 @@ fun setNewsItems(newsList:List<Article>){
             .load(newsList[position].urlToImage)
             .into(holder.binding.newsImage);
 
-
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.let { it(newsList[position]) } // Make ViewHolder clickable
+        }
     }
 
     override fun getItemCount(): Int {
      return  newsList.size;
     }
 
+    private var onItemClickListener: ((Article) -> Unit)? = null
 
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
+        onItemClickListener = listener
+    }
 }
 
 class  MainViewHolder(val binding:NewsRecyclerItemBinding): RecyclerView.ViewHolder(binding.root){

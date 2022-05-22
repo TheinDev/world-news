@@ -1,7 +1,6 @@
 package com.tnodev.worldnews.adapter
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.TextView
@@ -10,7 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.tabs.TabLayout
-import com.tnodev.worldnews.view.dashboard.NewsFragment
+import com.tnodev.worldnews.view.NewsFragment
 
 @Suppress("DEPRECATION")
 class CategoryFragmentAdapter : FragmentStatePagerAdapter {

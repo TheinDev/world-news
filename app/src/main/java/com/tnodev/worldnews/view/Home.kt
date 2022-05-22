@@ -60,6 +60,8 @@ class Home : AppCompatActivity() {
 
         setUpView();
 
+
+
     }
 
     companion object{

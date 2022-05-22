@@ -2,13 +2,14 @@ package com.tnodev.worldnews.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.tnodev.worldnews.model.Article
 import com.tnodev.worldnews.model.NewsResponse
 import com.tnodev.worldnews.repository.NewsRepo
 import kotlinx.coroutines.*
 
 
-class MainViewModel constructor(private val mainRespository: NewsRepo) :
+class MainViewModel constructor(private val newsRepo: NewsRepo) :
     ViewModel()
 {
 
@@ -19,6 +20,7 @@ class MainViewModel constructor(private val mainRespository: NewsRepo) :
     var job: Job? = null;
 
     val loading = MutableLiveData<Boolean>();
+    var detailArticle: Article? = null
 
     private  val exceptionHandler = CoroutineExceptionHandler{
 
@@ -35,7 +37,7 @@ class MainViewModel constructor(private val mainRespository: NewsRepo) :
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             loading.postValue(true);
 
-            val response = mainRespository.getBreakingNews(category,pageNumber);
+            val response = newsRepo.getBreakingNews(category,pageNumber);
             withContext(Dispatchers.Main){
 
                 if(response.isSuccessful){
@@ -51,6 +53,12 @@ class MainViewModel constructor(private val mainRespository: NewsRepo) :
 
         }
     }
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        newsRepo.insertNews(article);
+    }
+
+
     private fun onError(message:String){
 
         erroMessage.postValue(message);
