@@ -30,7 +30,7 @@ fun setNewsItems(newsList:List<Article>){
 
 
 
-
+   holder.binding.newsTxt.setText(movie.title);
         Glide.with(
             holder.itemView.context)
             .load(newsList[position].urlToImage)
