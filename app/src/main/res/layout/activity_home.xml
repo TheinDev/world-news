@@ -4,16 +4,21 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+  >
     <RelativeLayout
         android:id="@+id/home_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
 
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -22,12 +27,12 @@
             app:tabMode="scrollable"
 
             />
-<androidx.viewpager.widget.ViewPager
-    android:id="@+id/home_pager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
 
-
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/home_pager"
+            android:layout_below="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </RelativeLayout>
 

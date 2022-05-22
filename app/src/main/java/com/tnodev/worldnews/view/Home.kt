@@ -19,7 +19,7 @@ class Home : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
-    private lateinit var listAdapter: CategoryFragmentAdapter
+    private  var listAdapter: CategoryFragmentAdapter? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +58,7 @@ class Home : AppCompatActivity() {
             true;
         });
 
+        setUpView();
 
     }
 
@@ -66,12 +67,21 @@ class Home : AppCompatActivity() {
         var pagerPos:Int = 0;
     }
 
+    fun setUpView(){
+
+        callPager();
+        setUpTabs(binding.homePager);
+    }
+
+
+var itemList = listOf<String>(  "general", "sports", "technology", "science" ,"business" ,"entertainment" , "health"   )
     fun callPager(){
 
-
+        binding.homePager.offscreenPageLimit = 2;
         if (listAdapter == null) {
             listAdapter = CategoryFragmentAdapter(
                 supportFragmentManager,
+                itemList,
                 binding.tabLayout.tabCount,
 
 
@@ -83,7 +93,7 @@ class Home : AppCompatActivity() {
             binding.homePager.setAdapter(listAdapter)
             binding.homePager.setCurrentItem(pagerPos)
         } else {
-            listAdapter.notifyDataSetChanged()
+            listAdapter!!.notifyDataSetChanged()
         }
     }
 

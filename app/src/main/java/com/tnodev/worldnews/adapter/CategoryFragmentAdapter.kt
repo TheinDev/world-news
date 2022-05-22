@@ -4,12 +4,13 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.tabs.TabLayout
-import java.util.*
+import com.tnodev.worldnews.view.dashboard.NewsFragment
 
 @Suppress("DEPRECATION")
 class CategoryFragmentAdapter : FragmentStatePagerAdapter {
@@ -17,18 +18,17 @@ class CategoryFragmentAdapter : FragmentStatePagerAdapter {
     var posi = 0
     var tabLayout: TabLayout? = null
     var context: Context? = null
-    var isapply = false
-    var lan: String? = null
-    var bitmap: Bitmap? = null
 
-    //  ArrayList<Fragment> fragmentList=new ArrayList<>();
+    var itemList = listOf<String>()
+
+
     private val mCurTransaction: FragmentTransaction? = null
     var fragmentManager: FragmentManager? = null
 
     constructor(fm: FragmentManager?) : super(fm!!) {}
     constructor(
-        fragmentManager: FragmentManager?, tabCount: Int,
-        tabLayout: TabLayout?,  context: Context?
+        fragmentManager: FragmentManager?, itemList: List<String>, tabCount: Int,
+        tabLayout: TabLayout?, context: Context?
     ) : super(
         fragmentManager!!
     ) {
@@ -36,6 +36,7 @@ class CategoryFragmentAdapter : FragmentStatePagerAdapter {
         this.tabLayout = tabLayout
         this.fragmentManager = fragmentManager
         this.context = context
+        this.itemList = itemList;
 
     }
 
@@ -49,30 +50,30 @@ class CategoryFragmentAdapter : FragmentStatePagerAdapter {
         posi = position
 
 
-//    if(position==0){
-        val homeBundle = Bundle()
-        when (position) {
-        }
+        val data = Bundle()
+        data.putString("item", itemList[position]);
+        var view = NewsFragment();
+        view.arguments = data;
+
+        return view;
 
 
-        //   return fragmentList.get(position);
-        return Fragment()
     }
+
 
     override fun getPageTitle(position: Int): CharSequence? {
 
 
-        //  tv.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/NotoSansZawgyi-SemiBold.ttf"));
         val tab = tabLayout!!.getTabAt(position)
         if (tab != null) {
 
 
-            // tab.setCustomView(TextView(context));
+            tab.customView = TextView(context);
         }
-        return "temstr"
+        return itemList[position]
     }
 
     override fun getCount(): Int {
-        return tabCount
+        return itemList.size;
     }
 }

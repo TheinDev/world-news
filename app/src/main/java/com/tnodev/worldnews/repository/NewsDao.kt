@@ -1,12 +1,10 @@
 package com.tnodev.worldnews.repository
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.tnodev.worldnews.model.Article
 
+@Dao
 interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
