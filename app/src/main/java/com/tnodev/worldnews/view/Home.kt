@@ -73,8 +73,7 @@ class Home : AppCompatActivity() {
         setUpTabs(binding.homePager);
     }
 
-
-var itemList = listOf<String>(  "general", "sports", "technology", "science" ,"business" ,"entertainment" , "health"   )
+var itemList = listOf<String>(  "technology", "sports", "business", "science" , "health" ,"entertainment" , "general"  )
     fun callPager(){
 
         binding.homePager.offscreenPageLimit = 2;
