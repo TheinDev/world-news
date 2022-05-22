@@ -3,6 +3,7 @@ package com.tnodev.worldnews.repository
 import com.tnodev.worldnews.api_service.ApiService
 import com.tnodev.worldnews.api_service.RetrofitService
 import com.tnodev.worldnews.model.Article
+import kotlinx.coroutines.flow.Flow
 
 class NewsRepo( val db: NewsDatabase) {
 
@@ -15,5 +16,5 @@ class NewsRepo( val db: NewsDatabase) {
 
     suspend fun deleteNews(article: Article) = db.getDao().deleteNews(article)
 
-    fun getSavedNews() = db.getDao().getAllNews()
+    fun getSavedNews(): Flow<List<Article>> = db.getDao().getAllNews()
 }

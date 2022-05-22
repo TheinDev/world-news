@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.tnodev.worldnews.view.databinding.FragmentSecond2Binding
+import com.tnodev.worldnews.R
+import com.tnodev.worldnews.databinding.FragmentSecond2Binding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class Second2Fragment : Fragment() {
 
-    private var _binding: FragmentSecond2Binding? = null
-
+private var _binding: FragmentSecond2Binding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -24,8 +24,8 @@ class Second2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecond2Binding.inflate(inflater, container, false)
-        return binding.root
+      _binding = FragmentSecond2Binding.inflate(inflater, container, false)
+      return binding.root
 
     }
 
@@ -36,8 +36,7 @@ class Second2Fragment : Fragment() {
             findNavController().navigate(R.id.action_Second2Fragment_to_First2Fragment)
         }
     }
-
-    override fun onDestroyView() {
+override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }

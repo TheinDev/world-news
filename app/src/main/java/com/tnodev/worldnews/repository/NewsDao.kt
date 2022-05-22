@@ -3,6 +3,7 @@ package com.tnodev.worldnews.repository
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.tnodev.worldnews.model.Article
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NewsDao {
@@ -14,5 +15,5 @@ interface NewsDao {
     suspend fun deleteNews(article: Article)
 
     @Query("SELECT * FROM articles")
-    fun getAllNews(): LiveData<List<Article>>
+    fun getAllNews(): Flow<List<Article>>
 }

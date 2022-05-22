@@ -7,6 +7,7 @@ import com.tnodev.worldnews.model.Article
 import com.tnodev.worldnews.model.NewsResponse
 import com.tnodev.worldnews.repository.NewsRepo
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 
 
 class MainViewModel constructor(private val newsRepo: NewsRepo) :
@@ -20,7 +21,7 @@ class MainViewModel constructor(private val newsRepo: NewsRepo) :
     var job: Job? = null;
 
     val loading = MutableLiveData<Boolean>();
-    var detailArticle: Article? = null
+
 
     private  val exceptionHandler = CoroutineExceptionHandler{
 
@@ -57,7 +58,7 @@ class MainViewModel constructor(private val newsRepo: NewsRepo) :
     fun saveArticle(article: Article) = viewModelScope.launch {
         newsRepo.insertNews(article);
     }
-
+    fun getSavedNews(): Flow<List<Article>> = newsRepo.getSavedNews();
 
     private fun onError(message:String){
 

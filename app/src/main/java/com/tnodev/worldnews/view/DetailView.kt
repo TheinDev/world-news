@@ -1,8 +1,10 @@
 package com.tnodev.worldnews.view
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,6 +15,7 @@ import com.tnodev.worldnews.R
 import com.tnodev.worldnews.databinding.ActivityDetailViewBinding
 import com.tnodev.worldnews.repository.NewsDatabase
 import com.tnodev.worldnews.repository.NewsRepo
+import com.tnodev.worldnews.util.AppCons.Companion.detailArticle
 import com.tnodev.worldnews.viewmodel.MainViewModel
 import com.tnodev.worldnews.viewmodel.MyViewModelFactory
 
@@ -36,15 +39,17 @@ class DetailView : AppCompatActivity() {
 
         mainViewModel =  ViewModelProvider(this, MyViewModelFactory(newsRepository))
             .get(MainViewModel::class.java);
-        var article = mainViewModel.detailArticle;
+        var article = detailArticle;
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Added To Favorite", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
             article?.let {
 
+                binding.fab.setColorFilter(ContextCompat.getColor(this, R.color.design_default_color_primary));
                 mainViewModel.saveArticle(it);
             }
         }
+
 
         Glide.with(applicationContext)
             .load(article?.urlToImage)

@@ -13,6 +13,7 @@ import com.tnodev.worldnews.adapter.MainAdapter
 import com.tnodev.worldnews.databinding.FragmentDashboardBinding
 import com.tnodev.worldnews.repository.NewsDatabase
 import com.tnodev.worldnews.repository.NewsRepo
+import com.tnodev.worldnews.util.AppCons.Companion.detailArticle
 import com.tnodev.worldnews.viewmodel.MainViewModel
 import com.tnodev.worldnews.viewmodel.MyViewModelFactory
 
@@ -58,7 +59,7 @@ var adapter = MainAdapter();
 
            it.let {
 
-               mainViewModel.detailArticle = it;
+              detailArticle = it;
 
                goDatail(home!!);
            }
